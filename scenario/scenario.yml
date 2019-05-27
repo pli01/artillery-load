@@ -12,9 +12,6 @@ config:
     prod:
       target: "http://api.prod"
 scenarios:
-  - name: "Start"
-    flow:
-      - log: "Current environment is set to: {{ $environment }}"
   - name: "Candidat deja inscrit"
     flow:
       - post:
