@@ -1,7 +1,9 @@
 config:
   phases:
-    - duration: 10
+    - duration: 30
       arrivalRate: 5
+      name: "Warm up the application 5 user for 30s"
+
   payload:
     path: "../data/user.csv"
     fields:
