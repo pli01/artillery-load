@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  artillery:
+    image: load-artillery
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
+        npm_registry: ${NPM_REGISTRY}
+    container_name: load-artillery
+    volumes:
+      - ./scenario/:/artillery/scenario/
+      - ./data/:/artillery/data/
+      - ./reports:/artillery/reports/

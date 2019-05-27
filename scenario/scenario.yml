@@ -1,0 +1,23 @@
+config:
+  phases:
+    - duration: 10
+      arrivalRate: 5
+  payload:
+    path: "../data/user.csv"
+    fields:
+      - "email"
+  environments:
+    dev:
+      target: "http://api.dev"
+    prod:
+      target: "http://api.prod"
+scenarios:
+  - name: "Start"
+    flow:
+      - log: "Current environment is set to: {{ $environment }}"
+  - name: "Candidat deja inscrit"
+    flow:
+      - post:
+          url: "/candilibV2/api/v2/auth/candidat/magic-link"
+          json:
+            email: "{{ email }}"
