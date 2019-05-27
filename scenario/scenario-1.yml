@@ -1,0 +1,40 @@
+config:
+  phases:
+    - duration: 30
+      arrivalRate: 2
+      name: "Warm up the application 5 user for 30s"
+    - duration: 30
+      arrivalRate: 5
+    - duration: 30
+      arrivalRate: 10
+    - duration: 30
+      arrivalRate: 20
+    - duration: 60
+      arrivalRate: 50
+  payload:
+    -
+      path: "../data/user.csv"
+      fields:
+        - "codeNeph"
+        - "nomNaissance"
+        - "prenom"
+        - "email"
+        - "portable"
+        - "adresse"
+  environments:
+    dev:
+      target: "http://api.dev"
+    prod:
+      target: "http://api.prod"
+scenarios:
+  - name: "Candidat pre inscription"
+    flow:
+      - post:
+          url: "/candilibV2/api/v2/candidat/preinscription"
+          json:
+            codeNeph: "{{ codeNeph }}"
+            nomNaissance: "{{ nomNaissance }}"
+            prenom: "{{ prenom }}"
+            email: "{{ email }}"
+            portable: "{{ portable }}"
+            adresse: "{{ adresse }}"

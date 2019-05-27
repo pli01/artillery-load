@@ -12,9 +12,10 @@ config:
     - duration: 60
       arrivalRate: 50
   payload:
-    path: "../data/user.csv"
-    fields:
-      - "email"
+    -
+      path: "../data/mail.csv"
+      fields:
+        - "emailonly"
   environments:
     dev:
       target: "http://api.dev"
@@ -26,4 +27,4 @@ scenarios:
       - post:
           url: "/candilibV2/api/v2/auth/candidat/magic-link"
           json:
-            email: "{{ email }}"
+            email: "{{ emailonly }}"
