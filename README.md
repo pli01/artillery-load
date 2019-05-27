@@ -14,3 +14,10 @@ docker-compose -f docker-compose-artillery.yml build
 docker-compose -f docker-compose-artillery.yml run --rm artillery run -o reports/output.json -e dev -t "https://api.dev" scenario/scenario.yml
 docker-compose -f docker-compose-artillery.yml run --rm artillery report reports/output.json
 ```
+## Auto Run
+* Use make to build, run-load, generate-report
+```
+make build
+make run-load TARGET="http://api.tdl"
+make generate-report
+```
