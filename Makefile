@@ -4,7 +4,7 @@ build:
 run-load:
 	for i in scenario/*.yml ; do \
 	 o=$$(basename $$i .yml); \
-	 docker-compose -f docker-compose-artillery.yml run --rm artillery run -o reports/$$o.json -e prod -t "${TARGET}" $$i ; \
+	 docker-compose -f docker-compose-artillery.yml run -e HTTP_PROXY=$$http_proxy -e NO_PROXY=$$no_proxy --rm artillery run -o reports/$$o.json -e prod -t "${TARGET}" $$i ; \
 	done
 generate-report:
 	for i in scenario/*.yml ; do \
