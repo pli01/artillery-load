@@ -28,3 +28,6 @@ scenarios:
           url: "/candilibV2/api/v2/auth/candidat/magic-link"
           json:
             email: "{{ emailonly }}"
+          expect:
+            - statusCode: 401
+            - contentType: json
